@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function Searchcomics(name) {
+          console.log(name)
+            for (i = 0; i < array.length; i++) {
+                if (name === array[i]) {
+                   document.getElementById('searchresult').innerText=`${name} is found`
+                   break
+                   // console.log(`${name} is found`)
+                }
+                else {
+                    document.getElementById('searchresult').innerText=`${name} is not found`
+                   // console.log(`${name} not found`)
+                }
+            }
+
+        }
+
+        const array = ['One Piece', 'Kimetsu', 'Naruto', 'Dr.stone', 'Fire Force', 'Monster', 'Conan', 'Shield Hero', 'Baccano']
+
+    </script>
+</head>
+
+<body>
+    <label for="search">search</label>
+    <input id="search" type="text">
+    <button onclick="Searchcomics(document.getElementById('search').value)">Click me</button>
+    <div id="searchresult">
+        
+    </div>
+
+    <h1>One Piece</h1>
+    <h1>Kimetsu</h1>
+    <h1>Naruto</h1>
+    <h1>Dr.stone</h1>
+    <h1>Fire Force</h1>
+    <h1>Monster</h1>
+    <h1>Conan</h1>
+    <h1>Shield Hero</h1>
+    <h1>Baccano</h1>
+</body>
+
+</html>
+
+
+<div id="carousel">
+    <div class="carousel-inner carousel-slide carousel-item active" data-ride="carousel" data-slide="prev"
+      role="button"></div>
+    <img src="">
+    <div class="card">
+      <img class="card-img-top" src="" alt="">
+      <div class="card-body">
+        <div class="card-title">....</div>
+        <div class="card-text">........</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="" alt="">
+      <div class="card-body">
+        <div class="card-title">....</div>
+        <div class="card-text">........</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="" alt="">
+      <div class="card-body">
+        <div class="card-title">....</div>
+        <div class="card-text">........</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<form class="form-inline my-2 my-lg-0">
+    <label for="search"></label>
+    <input id="search" class="form-control mr-sm-2" type="text">
+    <button class="btn btn-outline-dark my-2 my-sm-0" onclick="Searchcomics(document.getElementById('search').value)">Search</button>
+    <div id="searchresult">
+    </form> 

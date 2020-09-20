@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Literature Club</title>
+  </head>
+  <h1>Study in Scarlet</h1>
+  <body>
+    <section id="top">
+      <img src="" >
+    </section>
+
+    <section id="main">
+      
+      <hr>
+      <!--Add your form below:-->
+      <form action ="story.html" method="GET">
+        <label for="q1">Explain the title:</label>
+        <input id="q1" type="text" name="q1" required>
+        <br>
+        <label for="q2">Author:</label>
+        <input id ="q2" name ="q2" type="text" required>
+        <br>
+        <label for="q3">Describe the setting:</label>
+        <input id= "q3" name="q3" type="text" required>
+        <br>
+        <label for="q4">Writing syle:</label>
+        <input id="q4" name="q4" type="text" required>
+    <br>
+        <label for="q5">Favorite part:</label>
+        <input id="q5" name="q5" type="text" required>
+        <br>
+        <label for="q6">Dislikes:</label>
+        <input id="q6" name="q6" type="text" required>
+        <br>
+        <span> Did you find this book interesting?</span>
+        <input id="yes" name="answer" type="radio" value="yes" required>
+        <label for="yes">Yes</label>
+        <input id="no" name="answer" type="radio" value="no" required>
+        <label for="no">No</label>
+        <br>
+        <label for="rate">Rate the storyline:</label> 
+        <select id="rate" name="rate" required>
+          <option value="fast">Best </option>
+          <option value="medium">Adequate</option>
+          <option value="slow">Worst</option>
+          
+        </select>
+        <br>
+           <label for="quote">Best line from the Book</label>
+           <input id="quote" name="quote" type="text" required list="quote-choices">
+           <datalist id="quote-choices"> 
+             
+             <option value="No man burdens his mind with small matters"></option>
+             <option value="There's the scarlet thread of murder"></option>
+             <option value="'Rache' is German for Revenge"></option>
+             <option value="To a great mind, nothing is little"></option>
+             </datalist>
+             <br>
+             <label for="message">Meaningful Message:</label>
+             <textarea id="message" name="message" required rows="8" cols="40"></textarea>
+               <br>
+            <input type="submit" value="Review">
+           
+      </form>
+    </section>
+  </body>
+</html>

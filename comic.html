@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Bootstrap CSS -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title></title>
+
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="hideviewbtn.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+</head>
+<!--navbar-->
+
+<body>
+
+  <!--search-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="sj.jpg" height="30">
+    <a class="navbar-brand" href="#">Manga</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" target="_blank">Links</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Navigate
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">List</a>
+            <a class="dropdown-item" href="#Jump Collection">Collage</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Videos</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+        </li>
+      </ul>
+      <script>
+        function getmangafromApi() {
+          fetch("https://jikan1.p.rapidapi.com/top/anime/1/upcoming", {
+            "method": "GET",
+            "headers": {
+              "x-rapidapi-host": "jikan1.p.rapidapi.com",
+              "x-rapidapi-key": "2783fd7940msh6fd0f859ca392bfp1491b0jsn4e02d5dd8d55"
+            }
+          })
+            .then(function (response) {
+
+              console.log('response', response);
+              return response.json()
+            })
+            .then(data => {
+              document.getElementById('animeupdate').innerText=''
+              console.log('data', data);
+              console.log(data.top)
+              for (i = 0; i < data['top'].length; i++) {
+                const upcoming = data.top[i]
+                const title = upcoming.title
+                const upcomingcomictitle = document.createElement('p')
+                upcomingcomictitle.innerText = title
+                document.getElementById('animeupdate').appendChild(upcomingcomictitle)
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          const loadingscreen = document.createElement('p')
+          loadingscreen.innerText = 'loading...'
+          document.getElementById('animeupdate').appendChild(loadingscreen)
+           
+        }
+
+
+        async function getmangafromApiUsingAsyncAwait() {
+          const loadingscreen = document.createElement('p')
+          loadingscreen.innerText = 'loading...'
+          document.getElementById('animeupdate').appendChild(loadingscreen)
+          let apiresponse =await fetch("https://jikan1.p.rapidapi.com/top/anime/1/upcoming", {
+            "method": "GET",
+            "headers": {
+              "x-rapidapi-host": "jikan1.p.rapidapi.com",
+              "x-rapidapi-key": "2783fd7940msh6fd0f859ca392bfp1491b0jsn4e02d5dd8d55"
+
+            }
+
+          })
+          if(!apiresponse.ok){
+            console.log('error occured')
+          }else{
+            const data=await apiresponse.json()
+           
+              document.getElementById('animeupdate').innerText=''
+              console.log('data', data);
+              console.log(data.top)
+              for (i = 0; i < data['top'].length; i++) {
+                const upcoming = data.top[i]
+                const title = upcoming.title
+                const rank = upcoming.rank
+                const image=upcoming.image_url
+                const upcomingcomictitle = document.createElement('p')
+                upcomingcomictitle.innerText = ` Rank:${rank}, Title:${title}, Image URL:${image}`
+                
+                document.getElementById('animeupdate').appendChild(upcomingcomictitle)
+              }
+          }
+           
+        
+           
+        }
+
+
+
+        function comtitle(comictitle) {
+          console.log(comictitle)
+          console.log(comicArray.length)
+          console.log(comicArray[0])
+          for (j = 0; j < comicArray.length; j++) {
+            if (comicArray[j].comictitle.includes(comictitle)) {
+              const comicgenre = comicArray[j].comicgenre
+              const comicstatus = comicArray[j].comicstatus
+              const comicauthor = comicArray[j].comicauthor
+
+              document.getElementById('searchby').innerText = `Title:${comicArray[j].comictitle}  |Genre:${comicgenre}  |Status:${comicstatus}  |Author:${comicauthor}`
+
+              break
+
+            }
+            else {
+              document.getElementById('searchby').innerText = `${comictitle} is not found`
+
+            }
+
+          }
+        }
+
+        function comgenre(comicgenre) {
+          console.log(comicgenre)
+          document.getElementById('searchby1').innerHTML = ''
+          for (j = 0; j < comicArray.length; j++) {
+            if (comicgenre === comicArray[j].comicgenre) {
+              const comictitle = comicArray[j].comictitle
+              const comicstatus = comicArray[j].comicstatus
+              const comicauthor = comicArray[j].comicauthor
+              let searchresultElement = document.createElement('p')
+              const comicProperties = `Title:${comictitle}  |Genre:${comicgenre}  |Status:${comicstatus}  |Author:${comicauthor}`
+              searchresultElement.innerHTML = comicProperties
+
+              document.getElementById("searchby1").appendChild(searchresultElement)
+            }
+
+            //document.getElementById('searchby1').innerText = `Title:${comictitle}  |Genre:${comicgenre}  |Status:${comicstatus}  |Author:${comicauthor}`
+
+
+          }
+          /* else {
+             document.getElementById('searchby1').innerText = `${comicgenre} is not found`
+
+           }*/
+        }
+
+
+
+        function comstatus(comicstatus) {
+          console.log(comicstatus)
+          document.getElementById('searchby2').innerHTML = ''
+          for (j = 0; j < comicArray.length; j++) {
+            if (comicstatus === comicArray[j].comicstatus) {
+              const comictitle = comicArray[j].comictitle
+              const comicgenre = comicArray[j].comicgenre
+              const comicauthor = comicArray[j].comicauthor
+              let searchresultElement1 = document.createElement('p')
+              const comicProperties1 = `Title:${comictitle}  |Genre:${comicgenre}  |Status:${comicstatus}  |Author:${comicauthor}`
+              searchresultElement1.innerHTML = comicProperties1
+
+              document.getElementById("searchby2").appendChild(searchresultElement1)
+            }
+          }
+        }
+
+        function comauthor(comicauthor) {
+          console.log(comicauthor)
+
+          for (j = 0; j < comicArray.length; j++) {
+            if (comicauthor === comicArray[j].comicauthor) {
+              const comictitle = comicArray[j].comictitle
+              const comicgenre = comicArray[j].comicgenre
+              const comicstatus = comicArray[j].comicstatus
+              document.getElementById('searchby3').innerText = `Title:${comictitle}  |Genre:${comicgenre}  |Status:${comicstatus}  |Author:${comicauthor}`
+
+              break
+            }
+            else {
+              document.getElementById('searchby3').innerText = `${comicauthor} is not found`
+
+            }
+          }
+
+        }
+
+
+        const array = ['Kimetsu no Yaiba', 'Boku no Hero Acadamia', 'Naruto', 'Dr.Stone', 'One punch man', 'One piece', 'Tokyo Ghoul', 'Death Note', 'Attack on Titan', 'Monster']
+
+        class comics {
+          constructor(titles, genres, statuses, author) {
+            this.comictitle = titles
+            this.comicgenre = genres
+            this.comicstatus = statuses
+            this.comicauthor = author
+          }
+          changeStatus(statuses) {
+            this.comicstatus = statuses
+          }
+        }
+
+
+        function printComicBookArray() {
+          for (j = 0; j < comicArray.length; j++) {
+
+            console.log(comicArray[j].comictitle + "," + comicArray[j].comicgenre + "," + comicArray[j].comicstatus + "," + comicArray[j].comicauthor)
+
+          }
+        }
+
+        const comic1 = new comics('Kimetsu no Yaiba', 'Adventure', 'Completed', 'Koyoharu Gotouge')
+        const comic2 = new comics('Boku no Hero Acadamia', 'Fantasy', 'Ongoing', 'Kohei Horikoshi')
+        const comic3 = new comics('Naruto', 'Adventure', 'Completed', 'Masashi Kishimoto')
+        const comic4 = new comics('Dr.Stone', 'Science Fiction', 'Ongoing', 'Riichiro Inagaki')
+        const comic5 = new comics('One punch man', 'Comedy', 'Ongoing', 'One')
+        const comic6 = new comics('One piece', 'Adventure', 'Ongoing', 'Eiichiro Oda')
+        const comic7 = new comics('Tokyo Ghoul', 'Supernatural', 'Ongoing', 'Sui Ishida')
+        const comic8 = new comics('Death Note', 'Mystery', 'Completed', 'Tsugumi Ohba')
+        const comic9 = new comics('Attack on Titan', 'Action', 'Ongoing', 'Hajime Isayama')
+        const comic10 = new comics('Monster', 'Mystery', 'Completed', 'Naoki Urasawa')
+        const comicArray = []
+        comicArray.push(comic1)
+        comicArray.push(comic2)
+        comicArray.push(comic3)
+        comicArray.push(comic4)
+        comicArray.push(comic5)
+        comicArray.push(comic6)
+        comicArray.push(comic7)
+        comicArray.push(comic8)
+        comicArray.push(comic9)
+        comicArray.push(comic10)
+        for (j = 0; j < comicArray.length; j++) {
+
+          console.log(comicArray[j].comictitle)
+          console.log(comicArray[j].comicgenre)
+          console.log(comicArray[j].comicstatus)
+          console.log(comicArray[j].comicauthor)
+
+        }
+
+        function editComics(comicPosition, editStatus) {
+          console.log(comicPosition)
+
+          comicArray[comicPosition].changeStatus(editStatus)
+
+          console.log(comicArray[comicPosition].comicstatus)
+          printComicBookArray()
+        }
+
+        function addcomics(addname, addplot, selectgenre, selectstatus) {
+          console.log(addname, addplot)
+          array.push(addname);
+          let titleElement = document.createElement('h4')
+          titleElement.innerHTML = addname
+          let plotelement = document.createElement('p')
+          plotelement.innerHTML = addplot
+          let genreElement = document.createElement('li')
+          genreElement.innerHTML = selectgenre
+          let newcomics = document.createElement('div')
+          newcomics.className = "bg-dark text-light font-italic text-center rounded border"
+          // newcomics.innerHTML = addname
+          newcomics.appendChild(titleElement)
+          newcomics.appendChild(plotelement)
+          newcomics.appendChild(genreElement)
+          document.getElementById("newbook").appendChild(newcomics)
+        }
+
+        function addcomment(comment1) {
+          console.log(comment1)
+
+          let newcomment = document.createElement('p')
+          newcomment.innerHTML = comment1
+          newcomment.className = "bg-dark text-light font-italic rounded border borderColor-dark"
+          document.getElementById("comments").appendChild(newcomment)
+        }
+        /*
+    function myFunction() {
+    setTimeout(function(){ document.getElementById("add1").submit();}, 3000);
+    setTimeout(function(){ document.getElementById("add2").submit();}, 6000);
+    }*/
+      </script>
+
+
+      <!--searchstyle-->
+
+
+    </div>
+    <!--
+    <div class="row">
+      <div class="col text-right"></div>
+      <input id="add" class="add-inline my-2 my-lg-0" type="text">
+      <button class="btn btn-outline-dark my-2 my-sm-0"
+        onclick="addcomics(document.getElementById('add').value)">Add</button>
+-->
+    <!--
+<input id="search" class="form-inline my-2 my-lg-0" type="text">
+<button class="btn btn-outline-dark my-2 my-sm-0"
+  onclick="Searchcomics(document.getElementById('search').value)">Search</button>
+<div id="searchresult">
+</div>
+</div>
+-->
+    <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#editCom"> EditComics
+    </button>
+
+    <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#myModal"> AddComics
+    </button>
+
+  </nav>
+
+  <div class="search">
+    <div class="container-fluid">
+      <h3 class="text-light">Search By:</h3>
+      <input id="comictitles" class="add-inline my-2 my-lg-0" type="text">
+      <button class="btn btn-outline-dark my-2 my-sm-0 text-light"
+        onclick="comtitle(document.getElementById('comictitles').value)">
+        Title</button>
+
+
+      <input id="comicgenres" class="add-inline my-2 my-lg-0" type="text">
+      <button class="btn btn-outline-dark my-2 my-sm-0 text-light"
+        onclick="comgenre(document.getElementById('comicgenres').value)">
+        Genre</button>
+
+
+
+      <input id="comicstatuses" class="add-inline my-2 my-lg-0" type="text">
+      <button class="btn btn-outline-dark my-2 my-sm-0 text-light"
+        onclick="comstatus(document.getElementById('comicstatuses').value)"> Status</button>
+
+
+      <input id="comicauthors" class="add-inline my-2 my-lg-0" type="text">
+      <button class="btn btn-outline-dark my-2 my-sm-0 text-light"
+        onclick="comauthor(document.getElementById('comicauthors').value)"> Author</button>
+
+      <br>
+      <br>
+      <div class="container-fluid ">
+        <div class="row">
+          <div class="col bg-dark text-light font-italic text-center rounded border">
+            <div id='searchby'></div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col bg-dark text-light font-italic text-center rounded border">
+            <div id='searchby1'></div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col bg-dark text-light font-italic text-center rounded border">
+            <div id='searchby2'></div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col bg-dark text-light font-italic text-center rounded border">
+            <div id='searchby3'></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  <div>
+
+
+    <img src="bla.jpg" width=100% height=700>
+    <div class="bg-secondary my-5">
+      <h1 class="text-center text-light display-4 "></h1>
+      <p class="text-center text-light"></p>
+    </div>
+  </div>
+  <!--
+    <textarea id="addcomic" name="message" class="add-inline" type="text" required rows="3" cols="120"></textarea>
+  -->
+  <div class="modal fade" id="editCom">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h1 class="modal-title">Edit Comic</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+        <div class="modal-body">
+
+
+          <div class="row">
+            <label for="rate">Title:</label>
+
+            <select id="editcomicmodaltitle" name="rate" required>
+              <option value=0>"Kimetsu no Yaiba"</option>
+              <option value=1>Boku no Hero Acadamia</option>
+              <option value=2>Naruto</option>
+              <option value=3>Dr.Stone</option>
+              <option value=4>One punch man </option>
+              <option value=5>One piece</option>
+              <option value=6>Tokyo Ghoul</option>
+              <option value=7> Death Note</option>
+              <option value=8>Attack on Titan</option>
+              <option value=9>Monster</option>
+            </select>
+
+          </div>
+          <br>
+          <div class="row">
+            <label for="rate">Status:</label>
+            <select id="editcomicmodalstatus" name="rate" required>
+              <option value="Ongoing">Ongoing</option>
+              <option value="Completed">Completed</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col text-right" type="submit">
+
+
+            <button class="btn btn-outline-dark "
+              onclick="editComics(document.getElementById('editcomicmodaltitle').value,document.getElementById('editcomicmodalstatus').value)">Submit</button>
+            -->
+            <!--
+            <div id="mangadescription"></div>
+-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h1 class="modal-title">Comic</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="row">
+            <label for="message">Title:</label>
+            <input id="title" class="add-inline my-2 my-lg-0" type="text">
+          </div>
+          <br>
+          <div class="row">
+            <label for="message">Plot:</label>
+            <textarea id="plot" name="message" class="add-inline-block" type="text" required rows="3"
+              cols="50"></textarea>
+          </div>
+
+          <div class="row">
+            <label for="rate">Genre:</label>
+
+            <select id="genre" name="rate" required>
+              <option value="Adventure">Adventure</option>
+              <option value="Martial Arts">Martial Arts</option>
+              <option value="Supernatural">Supernatural</option>
+              <option value="Horror">Horror</option>
+              <option value="Historical">Historical </option>
+              <option value="Science Fiction">Science Fiction</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Sports">Sports</option>
+              <option value="Comedy">Comedy</option>
+            </select>
+
+          </div>
+        </div>
+        <!--
+          <input id="add2" class="add-inline my-2 my-lg-0" type="text">
+        </div>-->
+
+        <!--<add  target="_blank" id="add1">
+<input type="text">
+<input type="submit">
+</add>
+<add target="_blank" id="add2">
+<input type="text">
+<input type="submit">
+</add>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+-->
+
+
+
+        <br>
+        <!--
+           <input type="submit" value="Save">
+             -->
+        <div class="row">
+
+          <div class="col text-right" type="submit">
+
+
+            <button class="btn btn-outline-dark "
+              onclick="addcomics(document.getElementById('title').value,document.getElementById('plot').value,document.getElementById('genre').value)">Submit</button>
+
+            <!--
+            <div id="mangadescription"></div>
+-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  </div>
+
+  <div id="searchresult">
+
+  </div>
+
+
+
+  <br>
+ 
+  <!--books-->
+  <section id='container-fluid'>
+    <button id='view-button'>New Releases</button>
+
+    <div class="row" id="codey">
+      <div class="col ">
+        <div class="card h-100">
+          <div class="card-header">
+            <h4>Latest Release</h4>
+          </div>
+          <div class="latest">
+            <img class="card-img-top" src="">
+
+            <div class="card-body">
+              <p class=" card-text">
+              <ol>
+                <li>Bakuman</li>
+                <li>Fullmetal Alchemist</li>
+                <li>Bungo Stray Dogs</li>
+                <li>Bleach</li>
+                <li>Shield Hero</li>
+                <li>The Promised Neverland</li>
+                <li>Haikyuu</li>
+                <li>Noragami</li>
+              </ol>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+
+        <div id="Album" class="carousel slide" data-ride="carousel">
+
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img src="images (60).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (62).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (68).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (67).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (65).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (64).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (61).jpeg" height=400 width=300>
+            </div>
+
+            <div class="carousel-item">
+              <img src="images (66).jpeg" height=400 width=300>
+            </div>
+
+
+          </div>
+
+          <a class="carousel-control-prev" href="#Album" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#Album" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <button id='close-button'>Close</button>
+  </section>
+  <br>
+  <div class="container ">
+    <div class="row">
+      <div class="col">
+        <h3>New Comics</h3>
+        <div class="row">
+          <div class="col">
+            <div class="bgc">
+              <div id="newbook" class="shadow-lg p-4 mb-4 background-dark "></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="container-fluid ">
+    <div class="row">
+      <h2>Manga_Top_10</h2>
+      <div class="bg">
+        <div class="content">
+
+
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#1 Kimetsu no Yaiba</h2>
+            <div class="row">
+              <div class="col-auto ">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (44).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Completed</h5>
+                <h5>Genre:Adventure</h5>
+                <h5>Author:Koyoharu Gotouge</h5>
+                <p>The story takes place in Taishō-era Japan. It follows protagonist Tanjiro Kamado and his sister
+                  Nezuko
+                  Kamado as they seek for a cure to Nezuko's demon curse. Tanjiro and Nezuko become entangled in the
+                  affairs
+                  of a secret society, known as the Demon Slayer Corps, that have been waging a secret war against
+                  demons
+                  for centuries. The demons are adder humans who sold their humanity in exchange for power, they feed on
+                  humans and possess super natural abilities such as super strength, magic and regeneration. Demons can
+                  only
+                  be killed if they're decapitated with weapons crafted from an alloy known as Sun Steel, injected with
+                  the
+                  poison of a flower called Wisteria, or exposed to sunlight. The Demon Slayers, on the other hand, are
+                  entirely human, however, they employ special breathing techniques, known as breaths, which grant them
+                  superhuman strength and increased resistance.</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#2 Boku no Hero Acadamia</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (41).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Ongoing</h5>
+                <h5>Genre:Fantasy</h5>
+                <h5>Author:Kohei Horikoshi</h5>
+                <p>The story of My Hero Academia is set in a world where currently most of the human population has
+                  gained
+                  the ability to develop superpowers called "Quirks" (個性, Kosei), which occur in children within the age
+                  of four: it is estimated that around 80% of the world population has a Quirk. There are infinite types
+                  of Quirks, and it is extremely unlikely to find two people who have the exact same power, unless they
+                  are closely related. These particular abilities have allowed the development of a new category of
+                  people: Heroes, who face the evil-voted individuals who use the Quirks for selfish and criminal
+                  purposes, commonly known as Villains. In addition, Heroes who choose to exercise heroism at work level
+                  are recognized as Pro Heroes. Unless the individual is registered as a Pro Hero, the voluntary use of
+                  his or her Quirk in public places is considered a crime, except in exceptional cases</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#3 Naruto</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="naruto_1_1.jpg" height=300s
+                    width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Completed</h5>
+                <h5>Genre:Adventure</h5>
+                <h5>Author:Masashi Kishimoto</h5>
+                <p>A powerful fox known as the Nine-Tails attacks Konoha, the hidden leaf village in the Land of Fire,
+                  one of the Five Great Shinobi Countries in the Ninja World. In response, the leader of Konoha, the
+                  Fourth Hokage (with his wife Uzumaki Kushina) seals the fox inside the body of his newborn son, Naruto
+                  Uzumaki, making Naruto a host of the beast; this costs Naruto's father his life, and the Third Hokage
+                  returns from retirement to become leader of Konoha again. Naruto is often ridiculed by the Konoha
+                  villagers for being the host of the Nine-Tails. Because of a decree made by the Third Hokage
+                  forbidding anyone to mention these events, Naruto knows nothing about the Nine-Tails until 12 years
+                  later, when Mizuki, a renegade ninja, reveals the truth to Naruto. Naruto then defeats Mizuki in
+                  combat, earning the respect of his teacher Iruka Umino</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#4 Dr.Stone</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (38).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Ongoing</h5>
+                <h5>Genre:Science Fiction</h5>
+                <h5>Author:Riichiro Inagaki</h5>
+                <p>Beginning in April 5738 A.D., it's been over 3,700 years since a mysterious flash of light
+                  petrified nearly all human life. A 16-year-old genius named Senkū Ishigami is suddenly revived to
+                  find himself in a world where all traces of human civilization have been eroded by time. Senkū sets
+                  up a base-camp and begins to study the petrified humans in order to determine the cause of the
+                  event, as well as a cure.Over the next 6 months, Senkū learns his revival was made possible with
+                  nitric acid. With this discovery, he develops a compound that will allow him to instantly revive
+                  others. He begins by reviving his friend Taiju Ōki, their classmate Yuzuriha Ogawa, and a famous
+                  martial artist named Tsukasa Shishiō, with the goal of rebuilding civilization with a focus on
+                  science.</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#5 One punch man</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (49).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Ongoing</h5>
+                <h5>Genre:Comedy</h5>
+                <h5>Author:One</h5>
+                <p>On a supercontinent Earth, powerful monsters and villains have been wreaking havoc in the cities.
+                  In response, the millionaire Agoni creates the Hero Association, which employs superheroes to
+                  fight evil. Saitama, an unassociated hero, hails from City Z and peradds heroic deeds for his own
+                  enjoyment. He has trained himself to the point of being able to defeat any enemy with a single
+                  punch, but his unmatched strength has left him with an overwhelming sense of boredom.Saitama
+                  eventually becomes a reluctant mentor to Genos, a cyborg seeking revenge against another cyborg
+                  who killed his family and destroyed his hometown. Saitama and Genos join the Hero Association, but
+                  due to scoring low on the written entry exam, Saitama is placed at a low-entry rank, and his feats
+                  remain unnoticed and unappreciated by the public</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#6 One piece</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (39).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Ongoing</h5>
+                <h5>Genre:Adventure</h5>
+                <h5>Author:Eiichio Oda</h5>
+                <p>The series focuses on Monkey D. Luffy, a young man who, inspired by his childhood idol and
+                  powerful pirate "Red Haired" Shanks, sets off on a journey from the East Blue Sea to find the
+                  titular treasure and proclaim himself the King of the Pirates. In an effort to organize his own
+                  crew, the Straw Hat Pirates, Luffy rescues and befriends a swordsman named Roronoa Zoro, and
+                  they head off in search of the One Piece. They are joined in their journey by Nami, a navigator
+                  and thief; Usopp, a sniper and a pathological liar; and Vinsmoke Sanji, a womanizing chef. They
+                  acquire a ship named the Going Merry and engage in confrontations with notorious pirates of the
+                  East Blue. As Luffy and his crew set out on their adventures, others join the crew later in the
+                  series, as they sail the seas in pursuit of their dreams.</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#7 Tokyo Ghoul</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (34).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Ongoing</h5>
+                <h5>Genre:Supernatural</h5>
+                <h5>Author:Sui Ishida</h5>
+                <p>The story follows Ken Kaneki, a college student who barely survives a deadly encounter with
+                  Rize Kamishiro, his date who reveals herself as a ghoul. He is taken to the hospital in
+                  critical condition. After recovering, Kaneki discovers that he underwent a surgery that
+                  transadded him into a half-ghoul. This was accomplished because some of Rize's organs were
+                  transferred into his body, and now, like normal ghouls, he must consume human flesh to
+                  survive. The ghouls who manage the coffee shop "Anteiku" take him in and teach him to deal
+                  with his new life as a half-ghoul</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#8 Death Note</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (35).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Completed</h5>
+                <h5>Genre:Mystery</h5>
+                <h5>Author:Tsugumi Ohba</h5>
+                <p>In Tokyo, an intelligent yet disaffected high-school student named Light Yagami finds the
+                  "Death Note", a mysterious black notebook which can kill anyone as long as the user knows
+                  both the target's name and face. After verifying that the notebook works and initially being
+                  terrified of its god-like abilities, Light begins to consider the possibilities of the Death
+                  Note's abilities and sets out to create a utopian world without crime, killing numerous
+                  high-profile Japanese criminals, before eventually targeting international criminals and
+                  felons around the world. </p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#9 Attack on Titan</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (36).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Ongoing</h5>
+                <h5>Genre:Action</h5>
+                <h5>Author:Hajime Isayama</h5>
+                <p>Eren Yeager (Jaeger in the anime adaptation) lives with Mikasa Ackerman and best friend
+                  Armin Arlert in the town of Shiganshina adjacent to Wall Maria, outermost of three
+                  circular walls protecting humanity from man-eating Titans said to have killed all other
+                  humans one hundred years prior. When Shiganshina and Wall Maria are breached by the
+                  Colossal (Colossus in the search) and Armoured Titans, invading Titans force humanity to
+                  retreat behind Wall Rose. After a titan devours his mother and his father disappears, a
+                  vengeful Eren enlists in the military along with Mikasa and Armin.</p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2>#10 Monster</h2>
+            <div class="row">
+              <div class="col-auto">
+                <a href="https://kisssearch.com/Status/Completed" target="_blank"> <img src="images (37).jpeg"
+                    height=300 width=200 alt=""></a>
+              </div>
+              <div class="col">
+                <h5>Status:Completed</h5>
+                <h5>Genre:Mystery</h5>
+                <h5>Author:Naoki Urasawa</h5>
+                <p>Dr. Kenzo Tenma is a young Japanese brain surgeon, working at Eisler Memorial Hospital
+                  in Düsseldorf, West Germany. Tenma is dissatisfied with the political bias of the
+                  hospital in treating patients, and seizes the chance to change things after a massacre
+                  brings fraternal twins Johan and Anna Liebert into the hospital. Johan has a gunshot
+                  wound to his head, and Anna mutters about killing; Tenma operates on Johan instead of
+                  the mayor, who arrived later. Johan is saved, but Mayor Roedecker dies; Tenma loses his
+                  social standing. Director Heinemann and the other doctors in Tenma's way are
+                  mysteriously murdered, and both children disappear from the hospital. The police suspect
+                  Tenma, but they have no evidence and can only question him.</p>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  <br>
+  <!--books-->
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col">
+        <h5>Comments</h5>
+
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col text-right">
+            <label for="comment"></label>
+            <input id="comment" name="comment" class="add-inline my-2 my-lg-0" type="text">
+            <button class="btn btn-outline-dark my-2 my-sm-0"
+              onclick="addcomment(document.getElementById('comment').value)">Add Comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment">
+      <div class="row">
+        <div class="col">
+          <br>
+          <div id="comments"></div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="last">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h2 class="text-light">Jump Collection:</h2>
+          <br>
+          <div id="Album" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+
+              <div class="carousel-item active">
+                <img src="images (50).jpeg" height=400 width=300>
+              </div>
+
+              <div class="carousel-item">
+                <img src="images (51).jpeg" height=400 width=300>
+              </div>
+
+              <div class="carousel-item">
+                <img src="images (52).jpeg" height=400 width=300>
+              </div>
+
+              <div class="carousel-item">
+                <img src="images (43).jpeg" height=400 width=300>
+              </div>
+
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#Album" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#Album" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <br>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+          crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+          integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+          crossorigin="anonymous"></script>
+        <script src="hideviewbtn.js"></script>
+      </div>
+    </div>
+    <br>
+  </div>
+ 
+  <button class="btn btn-outline-dark" onclick="getmangafromApiUsingAsyncAwait()">UpcomingAnime</button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+     <div id="animeupdate"></div>
+    </div>
+   </div>
+ </div>
+
+
+</body>
+
+
+<!-- Footer -->
+
+<footer>
+  <!-- Footer Links -->
+  <div class="foot">
+    <div class="container text-center ">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <div class="col-md-3 mx-auto">
+
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4 "></h5>
+          <div class="link">
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://kodanshacomics.com/new-releases/" target=" _blank">Comics</a>
+              </li>
+              <li>
+                <a href="https://reelrundown.com/animation/Anime-Genre-List" target="_blank">Genre</a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/List_of_search_series_by_volume_count" target="_blank">Status</a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/List_of_search_artists" target="_blank">Author</a>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+</html>
+
+
+
+
+<!--<a href="https://kodanshacomics.com/new-releases/" target=" _blank">Latest Release
+<a href="https://reelrundown.com/animation/Anime-Genre-List" target="_blank">Genre
+<a href="https://en.wikipedia.org/wiki/List_of_search_series_by_volume_count" target="_blank">Status
+   <a href="https://en.wikipedia.org/wiki/List_of_search_artists" target="_blank"> Mangaka
+-->

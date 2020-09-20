@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<style>
+	    
+		h1{
+			font-size:500%;
+			text-align: center;
+			border-style: dotted;
+			background-color:DodgerBlue;
+			width:500px;
+			
+			transition: width 5s;
+		}
+		h1:hover {
+		  width: 900px;
+		}
+	</style>
+	<script>
+		function myFunction() {
+			  //alert("I am an alert box!");
+			  //console.log(document.getElementById("firstname").value + " " + document.getElementById("lastname").value)
+			 document.getElementById("fullname").innerHTML = document.getElementById("firstname").value + " " + document.getElementById("lastname").value
+			}
+		function addition() {
+			document.getElementById("sum").innerHTML = parseInt(document.getElementById("number1").value) + parseInt(document.getElementById("number2").value)
+		}
+	</script>
+	<body style="background-color:#4caf50;">
+		<h1>My First Heading</h1>
+		<p style="font-family:courier;">My first paragraph.
+			<a href="https://www.w3schools.com">This is a link</a> 
+			<img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142">
+			
+		</p>
+		<p>
+			<input type="text" id="firstname" name="firstname" value="Mickey">
+			<input type="text" id="lastname" name="lastname" value="Mouse">
+			
+			<button onclick="myFunction()">Print my full name</button>
+			<p id="fullname"></p>
+		</p>
+		<p>
+		<input type="number" id="number1" name="number 1" >
+		<input type="number" id="number2" name="number 2" >
+		<button onclick="addition()">add</button>
+		<p id="sum"></p>
+		
+		
+		</p>
+
+		
+	</body>
+</html>
