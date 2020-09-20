@@ -114,11 +114,14 @@
                 const upcoming = data.top[i]
                 const title = upcoming.title
                 const rank = upcoming.rank
-                const image=upcoming.image_url
-                const upcomingcomictitle = document.createElement('p')
-                upcomingcomictitle.innerText = ` Rank:${rank}, Title:${title}, Image URL:${image}`
+                const splitImage = upcoming.image_url.split("?")
+                const image=splitImage[0]
+               // const upcomingcomictitle = document.createElement('p')
+               const imageElement=document.createElement("img")
+               imageElement.setAttribute("src",image)
+               // upcomingcomictitle.innerText = ` Rank:${rank}, Title:${title}, Image URL:${image}`
                 
-                document.getElementById('animeupdate').appendChild(upcomingcomictitle)
+                document.getElementById('animeupdate').appendChild(imageElement)
               }
           }
            
