@@ -8,6 +8,10 @@
 
 <head>
     <title>Profile</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="table.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -23,6 +27,54 @@
 </head>
 
 <body class="homepage is-preload">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="writing-feather-vector-icon-antique-writing-tools-vector-icon-isolated-white-background-159950951.jpg"
+          height="30">
+        <a class="navbar-brand" href="#">Contentriter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">About Us <span class="sr-only">(current)</span></a>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Products
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="articles.html">Articles</a>
+              
+                <a class="dropdown-item" href="blogs.html">Blogs</a>
+             
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="prodesc.html">Product Description</a>
+                
+                <a class="dropdown-item" href="socialmedia.html">Social Media</a>
+               
+                <a class="dropdown-item" href="profilecreation.html">Profile Creation</a>
+                <a class="dropdown-item" href="travellog.html">Travel Blog</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" target="_self">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" target="_blank">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#"></a>
+            </li>
+          </ul>
+    
+    
+      </nav>
     <div id="page-wrapper">
 
         <!-- Header -->
@@ -35,7 +87,7 @@
                     <hr />
                     <p>Platform for freelancing content writers</p>
                 </header><br>
-                <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#signin"> Update
+                <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#update"> Update
                 </button><br>
             </div>
 
@@ -47,50 +99,79 @@
 
         
     
-    <div class="modal fade" id="signin">
-        <div class="modal-dialog">
+    <div class="modal fade bd-example-modal-xl" aria-labelledby="myExtraLargeModalLabel" tabindex="-1" role="dialog" id="update">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
-                <div class="modal-header">
+                <div class="modal-header" >
                     <h1 class="modal-title">Update Profile</h1>
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
+                </div><br>
 
                 <div class="modal-body">
-
-
-                    <div class="row">
-                        <label for="uname">First Name:</label>
-                        <textarea id="plot" name="message" class="add-inline-block" type="text" required rows="1"
-                            cols="25"></textarea>
-                    </div><br>
-
-                    <div class="row">
-                        <label for="uname">Last Name:</label>
-                        <textarea id="plot" name="message" class="add-inline-block" type="text" required rows="1"
-                            cols="25"></textarea>
-                    </div><br>
-
-                    <div class="row">
-                        <label for="email">Email:</label>
-                        <textarea id="email" name="mail" class="add-inline-block" type="text" required rows="1"
-                            cols="35"></textarea>
-                    </div><br>
-                    <div class="row">
-                        <label for="pwd">Mobile Number:</label>
-                        <input type="password" id="pwd" name="pwd">
-                    </div><br>
-                    <div class="row">
-                        <label for="pwd">Organization:</label>
-                        <input type="password" id="pwd" name="pwd">
-                    </div><br>
-
-                    <div class="col text-right" type="submit">
+                    <div id="myform">
+                    <table>
+                        <tr>
+                            <td>First Name:</td>
+                            <td><input type="text" id="fname"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td><input type="text" id="lname">
+                            
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><input type="text" id="email">
+                            
+                        </tr>
+                        <tr>
+                            <td>Mobile:</td>
+                            <td><input type="text" id="mobile">
+                            
+                        </tr>
+                        <tr>
+                            <td>Organization Profile:</td>
+                            <td><input type="text" id="org">
+                            
+                        </tr>
+                        <tr>
+                            <td>Career Profile:</td>
+                            <td><input type="text" id="career">
+                            
+                        </tr>
+                        <tr>
+                            <td>Qualifications:</td>
+                            <td><input type="text" id="qualification">
+                            <input type="button" id="add" value="Add" onclick="Javascript:addRow()" ></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
                     </div>
-                    <div class="row">
-                        <button class="btn btn-outline-dark "
-                            onclick="editComics(document.getElementById('editcomicmodaltitle').value,document.getElementById('editcomicmodalstatus').value)">Submit</button>
+                    <div id="mydata">
+                    <b>Updated Profile</b><br>
+                    <table id="myTableData"  border="1" cellpadding="2">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><b>First Name</b></td>
+                            <td><b>Last Name</b></td>
+                            <td><b>Email</b></td>
+                            <td><b>Mobile</b></td>
+                            <td><b>Organization Profile</b></td>
+                            <td><b>Career Profile</b></td>
+                            <td><b>Qualifications</b></td>
+                        </tr>
+                    </table>
+                    &nbsp;
+                     
                     </div>
+                    
+
+                   
                 </div>
             </div>
 
@@ -353,6 +434,17 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="hideviewbtn.js"></script>
 
 </body>
 
