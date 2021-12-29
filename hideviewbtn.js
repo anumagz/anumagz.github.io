@@ -20,7 +20,7 @@ close.onclick = hide;
 
 // Write your code here
 let textChange=function(){
-view.innerHTML='Comics'
+view.innerHTML='Services'
 }
 
 let textReturn=function(){
@@ -57,3 +57,4 @@ let enlarge = document.getElementById('foot');
 enlarge.onmouseover = function(){
   enlarge.style.width = '430px';
 };
+

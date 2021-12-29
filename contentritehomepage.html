@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Bootstrap CSS -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title></title>
+
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="hideviewbtn.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+</head>
+<!--navbar-->
+
+<body>
+</body><script>
+  function addcomment(comment1) {
+    console.log(comment1)
+
+    let newcomment = document.createElement('p')
+    newcomment.innerHTML = comment1
+    newcomment.className = "bg-dark text-light font-italic rounded border borderColor-dark"
+    document.getElementById("comments").appendChild(newcomment)
+  }
+</script>
+  <!--search-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="writing-feather-vector-icon-antique-writing-tools-vector-icon-isolated-white-background-159950951.jpg"
+      height="30">
+    <a class="navbar-brand" href="#">Contentriter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">About Us <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Products
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="articles.html">Articles</a>
+          
+            <a class="dropdown-item" href="blogs.html">Blogs</a>
+         
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="prodesc.html">Product Description</a>
+            
+            <a class="dropdown-item" href="socialmedia.html">Social Media</a>
+           
+            <a class="dropdown-item" href="profilecreation.html">Profile Creation</a>
+            <a class="dropdown-item" href="travellog.html">Travel Blog</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="updateprofile.html" target="_blank">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" target="_blank">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+        </li>
+      </ul>
+
+      <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#signin"> Sign Up
+      </button>
+
+      <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#login"> Log In
+      </button>
+
+  </nav>
+
+  <br>
+  </div>
+  <div class="modal fade" id="signin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h1 class="modal-title">Create Account</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+        <div class="modal-body">
+
+
+          <div class="row">
+            <label for="uname">Username:</label>
+            <textarea id="plot" name="message" class="add-inline-block" type="text" required rows="1"
+              cols="25"></textarea>
+          </div><br>
+          
+          <div class="row">
+            <label for="email">Email:</label>
+            <textarea id="email" name="mail" class="add-inline-block" type="text" required rows="1"
+              cols="35"></textarea>
+          </div><br>
+          <div class="row">
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" name="pwd">
+          </div><br>
+          <div class="row">
+            <label for="pwd">Confirm Password:</label>
+            <input type="password" id="pwd" name="pwd">
+          </div><br>
+
+          <div class="col text-right" type="submit">
+          </div>
+          <div class="row">
+            <button class="btn btn-outline-dark "
+              onclick="editComics(document.getElementById('editcomicmodaltitle').value,document.getElementById('editcomicmodalstatus').value)">Submit</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="login">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h1 class="modal-title">Log In</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+        <div class="modal-body">
+
+
+          <!-- <div class="row">
+            <label for="uname">Username:</label>
+            <textarea id="plot" name="message" class="add-inline-block" type="text" required rows="1"
+              cols="25"></textarea>
+          </div><br>
+          
+
+          <div class="row">
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" name="pwd">
+          </div><br>
+          <div id="highlighted" class="hl-basic hidden-xs">
+            <div class="container-fluid">
+               <div class="row">
+                  
+               </div>
+            </div> -->
+         </div>
+         <div id="content" class="interior-page">
+         <div class="container-fluid">
+         <div class="row">
+         <!--Sidebar-->
+         <div class="col-sm-3 col-md-3 col-lg-2 sidebar equal-height interior-page-nav hidden-xs">
+            <div class="dynamicDiv panel-group" id="dd.0.1.0">
+              
+              
+            </div>
+         </div>
+         <form action="action_page.php" method="post">
+          <!-- <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+          </div> -->
+        
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required><br>
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required><br>
+        
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div><br>
+        
+          <div class="container" style="background-color:#f1f1f1">
+            
+            <span class="psw">Forgot <a href="#">password?</a></span>
+          </div>
+        </form>
+         <!--Content-->
+         <!-- <div class="col-sm-9 col-md-9 col-lg-10 content equal-height">
+           <div class="content-area-right">
+            <div class="content-crumb-div">
+               <a href=""> Forgot Password
+            </div>
+               <div class="row">
+                  <div class="col-md-5 forgot-form">
+                     <p>
+                        Please enter your email address below and we will send you information to change your password.
+                     </p>
+                     <label class="label-default" for="un">Email Address</label> <input id="email_addy" name="email_addy" class="form-control" type="text"><br>
+                     <a id="mybad" class="btn btn-primary" role="button">RESET</a>
+                  </div>
+                  <div class="col-md-5 forgot-return" style="display:none;">
+                     <h3>
+                        Reset Password Sent
+                     </h3>
+                     <p>
+                        An email has been sent to your address with a reset password you can use to access your account.
+                     </p>
+                  </div>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-5"></div>
+               </div>
+            </div>
+         </div> -->
+         </div>
+         </div>
+
+            
+            
+            </form>
+            <div class="col text-right" type="submit">
+            </div>
+            <div class="row">
+              <button class="btn btn-outline-dark text-center "
+                onclick="editComics(document.getElementById('editcomicmodaltitle').value,document.getElementById('editcomicmodalstatus').value)">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <img src="Content-Writing-Services-digital-rishi-SEO.jpg" width=100% height=700>
+  <div class="bg-secondary my-5">
+    <h1 class="text-center text-light display-4 "></h1>
+    <p class="text-center text-light"></p>
+  </div>
+  </div>
+  <!--
+    <textarea id="addcomic" name="message" class="add-inline" type="text" required rows="3" cols="120"></textarea>
+  -->
+
+
+  <section id='container-fluid'>
+    <button id='view-button'>Services Available</button>
+
+    <div class="row" id="codey">
+      <div class="col ">
+        <div class="card h-100">
+          <div class="card-header">
+            <h4>Creator's Corner</h4>
+          </div>
+          <div class="latest">
+            <img class="card-img-top" src="">
+
+            <div class="card-body">
+              <p class=" card-text">
+              <ol>
+                <li>Editing</li>
+                <li>Translation</li>
+                <li>Subtitling</li>
+                <li>Newsletters</li>
+                <li>Travel Blogs</li>
+                <li>Company Profiles</li>
+                <li>Product Reviews</li>
+                <li>Articles</li>
+              </ol>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col">
+
+        <div id="Album" class="carousel slide" data-ride="carousel" text-align="center">
+
+          <div class="carousel-inner">
+           
+              <div class="carousel-item active">
+                <img src="editing.jpeg" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="increase-ecommerce-sales-product-video-captions-subtitles.jpg" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="shutterstock_266575118 (1).jpg" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="translator.jpg" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="Do-You-Need-Social-Media-To-Be-A-Successful-Blogger-Social.png" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="iStock-817268996-e1534324168828.webp" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img
+                  src="127743447-isometric-flat-vector-concept-of-creative-business-blogging-commercial-blog-posting-copywriting-cont.webp"
+                  height=400 width=700>
+              </div>
+            </div>
+
+          </div>
+
+          <a class="carousel-control-prev" href="#Album" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#Album" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <button id='close-button'>Close</button>
+  </section>
+  <br>
+
+  </div>
+  </div>
+  </div>
+
+  <br>
+  
+  <br>
+
+  <div class="container-fluid ">
+    <div class="row">
+      <h2>Content Writing</h2>
+      <div class="bg">
+        <div class="content">
+
+
+          <div class="col-auto bg-dark text-light font-italic rounded border border-light">
+            <h2><b>About Us</b></h2>
+            <div class="row">
+              <div class="col-auto ">
+                <a href="" target="_blank"> <img src="creative-writing-guide.png"
+                    height=300 width=400 alt=""></a>
+              </div> 
+              <div class="col">
+                <h5></h5>
+                <!-- <h5>Genre:Adventure</h5>
+                <h5>Author:Koyoharu Gotouge</h5> -->
+                <p>
+                  Freelancing Content Writers are available to provide Copyright free creative content for Articles, Blogs, Travel Logs, Brochures, Product Reviews and so on. Contentriter is a secure and trustable platform with brand new resources that helps the community to request desired content and get them prepared at a reasonable budget within a specified duration. Be sure to check out all the services provided and feel free to drop a review, so we can keep developing the app to create a app that can help all the freelancers out there. </p>
+
+              </div>
+            </div>
+            <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  <br>
+  <!--books-->
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col">
+        <h5>Comments</h5>
+
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col text-right">
+            <label for="comment"></label>
+            <input id="comment" name="comment" class="add-inline my-2 my-lg-0" type="text">
+            <button class="btn btn-outline-dark my-2 my-sm-0"
+              onclick="addcomment(document.getElementById('comment').value)">Add Comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment">
+      <div class="row">
+        <div class="col">
+          <br>
+          <div id="comments"></div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="last">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h2 class="text-light"></h2>
+          <br>
+          <div id="Album" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+
+              <div class="carousel-item active">
+                <img src="content-11.jpg" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="blog.jpg" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="61AJGF4lvFL.png" height=400 width=700>
+              </div>
+
+              <div class="carousel-item">
+                <img src="SG-30-Ways-to-Come-Up-with-Great-Ideas-for-Your-Blog-Posts.jpg" height=400 width=700>
+              </div>
+
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#Album" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#Album" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <br>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+          crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+          integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+          crossorigin="anonymous"></script>
+        <script src="hideviewbtn.js"></script>
+      </div>
+    </div>
+    <br>
+  </div>
+  </div>
+
+
+</body>
+
+
+<!-- Footer -->
+
+<footer>
+  <!-- Footer Links -->
+  <div class="foot">
+    <div class="container text-center ">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <div class="col-md-3 mx-auto">
+
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4 "></h5>
+          <div class="link">
+            <h3><b>Contact:</b></h3>
+            <ul class="list-unstyled">
+              <li>
+                <p> Phone: 91-8754224555</p>
+              </li>
+              <li>
+                 <p>Email: halcyonventures@gmail.com</p>
+              </li>
+              <li>
+                Address : Coimbatore, Tamil Nadu, India 641007 | Coordinate, : 11, 76.9667
+              </li>
+             
+              
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+</html>
