@@ -1,4 +1,4 @@
-function addRow() {
+function addRows() {
           
     var keySkills = document.getElementById("skills");
     var workExp = document.getElementById("workexp");
@@ -8,6 +8,8 @@ function addRow() {
     var language = document.getElementById("lang");
     var projects = document.getElementById("projects");
     var linkedIn = document.getElementById("linkedIn");
+
+    
 
     var table = document.getElementById("myTableData");
  
@@ -23,6 +25,7 @@ function addRow() {
     row.insertCell(6).innerHTML= language.value;
     row.insertCell(7).innerHTML= projects.value;
     row.insertCell(8).innerHTML= linkedIn.value;
+
 }
  
 function deleteRow(obj) {
@@ -63,3 +66,5 @@ function load() {
     console.log("Page load finished");
  
 }
+
+

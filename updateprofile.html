@@ -10,6 +10,7 @@
     <title>Profile</title>
     <meta charset="UTF-8">
     <script type="text/javascript" src="table.js"></script>
+    <script type="text/javascript" src="businessprofile.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8" />
@@ -95,6 +96,11 @@
                 <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#update">
                     Update Profile
                 </button><br><br>
+                <button type="button" class="btn btn-dark border-light" data-toggle="modal" data-target="#business">
+                   Business Profile
+                </button>
+                <br>
+                <br>
                 <h5>Provide your Skill set, so the Consumers can Hire Freelancers based on their Qualification.</h5>
             </div>
 
@@ -157,7 +163,7 @@
                             <tr>
                                 <td>LinkedIn:</td>
                                 <td><input type="text" id="linkedIn">
-                                    <input type="button" id="add" value="Add" onclick="Javascript:addRow()">
+                                    <input type="button" id="add" value="Add" onclick="Javascript:addRows()">
                                 </td>
                             </tr>
 
@@ -195,6 +201,91 @@
         </div>
 
     </div>
+
+    <div class="modal fade bd-example-modal-xl" aria-labelledby="myExtraLargeModalLabel" tabindex="-1" role="dialog"
+        id="business">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title">Business Profile</h1>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div><br>
+                
+<h5>General Business Information</h5>
+                <div class="modal-body">
+                    <div id="myform">
+                        <table>
+                            <tr>
+                                <td>Business Name:</td>
+                                <td><input type="text" id="business"></td>
+                            </tr>
+                            <tr>
+                                <td>Business Details:</td>
+                                <td><input type="text" id="details">
+
+                            </tr>
+                            <tr>
+                                <td>Date of Establishment:</td>
+                                <td><input type="text" id="date">
+
+                            </tr>
+                            <tr>
+                                <td>Head Office Address:</td>
+                                <td><input type="text" id="office">
+
+                            </tr>
+                            <tr>
+                                <td>Services Provided:</td>
+                                <td><input type="text" id="services">
+
+                            </tr>
+                            <tr>
+                                <td>Service Phone Number:</td>
+                                <td><input type="text" id="phone">
+
+                            </tr>
+                        
+                            <tr>
+                                <td>LinkedIn:</td>
+                                <td><input type="text" id="linked">
+                                    <input type="button" id="add1" value="Add" onclick="Javascript:addRow()">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="mydata1">
+                        <b>Updated Profile</b><br>
+                        <table id="myTableData1" border="1" cellpadding="2">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><b>Business Name</b></td>
+                                <td><b>Business Details</b></td>                        
+                                <td><b>Date of Establishment</b></td>
+                                <td><b>Head Office Address</b></td>
+                                <td><b>Services Provided</b></td>
+                                <td><b>Service Phone Number</b></td>
+                                <td><b>LinkedIn</td>
+                            </tr>
+                        </table>
+                        &nbsp;
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 
 
 
