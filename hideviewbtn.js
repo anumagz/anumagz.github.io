@@ -23,9 +23,9 @@ let textChange=function(){
 view.innerHTML='Services'
 }
 
-let textReturn=function(){
-view.innerHTML='Latest Releases'
-}
+// let textReturn=function(){
+// view.innerHTML='Latest Releases'
+// }
 
 view.addEventListener('click',textChange)
 close.addEventListener('click', textReturn)
